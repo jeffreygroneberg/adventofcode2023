@@ -8,7 +8,7 @@ Most of these solutions try to go a TDD way. So you will find within the tests m
 
 | Day | Solution | 
 | --- | -------- |
-| [1](https://adventofcode.com/2023/day/1)   | [Day 1](day1)|
+| [1](https://adventofcode.com/2023/day/1)   | [adventofcode2023/day1](day1)|
 
 
 
