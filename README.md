@@ -2,9 +2,9 @@
 
 My solutions to the [Advent of Code 2023](https://adventofcode.com/2023) puzzles. This time implemented in Golang.
 
-Solutions 
+## Solutions 
 
-// generate table with days and links to solutions
+Most of these solutions try to go a TDD way. So you will find within the tests most often the solution and also the input data.
 
 | Day | Solution | 
 | --- | -------- |
