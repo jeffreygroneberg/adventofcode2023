@@ -290,12 +290,9 @@ func TestGetValidGamesWithTestData1(t *testing.T) {
 		"green": 13,
 	}
 
-	expected := 8
-
-	// get all valid games
+	expected := 2164
 	validGames := GetGamesWithConstraints(playedGames, constraints, true)
 
-	// get the sum of the ids
 	sum := 0
 	for gameId, _ := range validGames {
 		sum += gameId
