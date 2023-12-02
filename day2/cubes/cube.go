@@ -106,3 +106,11 @@ func isGameValid(gameCubes map[string]int, constraints map[string]int) bool {
 	}
 	return valid
 }
+
+func GetPowerOfCubes(cubes map[string]int) int {
+	power := 1
+	for _, number := range cubes {
+		power *= number
+	}
+	return power
+}
