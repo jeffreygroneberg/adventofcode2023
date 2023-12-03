@@ -3,12 +3,9 @@ package calibration
 import (
 	"strconv"
 	"strings"
-)
 
-func IsNumber(char byte) bool {
-	_, err := strconv.Atoi(string(char))
-	return err == nil
-}
+	"github.com/jeffreygroneberg/adventofcode2023/util"
+)
 
 var Replacer = strings.NewReplacer(
 
@@ -50,7 +47,7 @@ func CalculateCalibrationForLine(line string, replace bool) (int, error) {
 	// loop through each character in the string
 	for i := 0; i < len(line); i++ {
 		// if the character is a number, add it to the string
-		if IsNumber(line[i]) {
+		if util.IsNumber(line[i]) {
 			builder.WriteByte(line[i])
 		}
 	}

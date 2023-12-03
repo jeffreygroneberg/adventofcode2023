@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"log"
 	"os"
+	"strconv"
 )
 
 // reads a file and returns a slice of strings
@@ -30,4 +31,13 @@ func ReadFile(filename string) ([]string, error) {
 
 	// return slice of strings
 	return lines, nil
+}
+
+func IsNumber(char byte) bool {
+	_, err := strconv.Atoi(string(char))
+	return err == nil
+}
+
+func IsNumberOrDot(char byte) bool {
+	return IsNumber(char) || char == '.'
 }

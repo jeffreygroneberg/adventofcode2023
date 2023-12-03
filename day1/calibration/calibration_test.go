@@ -123,24 +123,6 @@ func TestCalculateCalibrationSumForFile_Part2(t *testing.T) {
 
 }
 
-func TestIsNumber(t *testing.T) {
-
-	tests := []struct {
-		char     byte
-		expected bool
-	}{
-		{'1', true},
-		{'a', false},
-		{'b', false}}
-
-	for _, test := range tests {
-		result := calibration.IsNumber(test.char)
-		if result != test.expected {
-			t.Errorf("Expected %t, but got %t for char %s", test.expected, result, string(test.char))
-		}
-	}
-}
-
 func TestReplacer(t *testing.T) {
 
 	tests := []struct {

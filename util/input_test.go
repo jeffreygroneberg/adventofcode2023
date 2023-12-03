@@ -37,3 +37,21 @@ func TestReadFileNonExistent(t *testing.T) {
 		t.Errorf("Expected error, but got %v", result)
 	}
 }
+
+func TestIsNumber(t *testing.T) {
+
+	tests := []struct {
+		char     byte
+		expected bool
+	}{
+		{'1', true},
+		{'a', false},
+		{'b', false}}
+
+	for _, test := range tests {
+		result := util.IsNumber(test.char)
+		if result != test.expected {
+			t.Errorf("Expected %t, but got %t for char %s", test.expected, result, string(test.char))
+		}
+	}
+}
