@@ -209,22 +209,6 @@ func TestWinsWithData1(t *testing.T) {
 	}
 }
 
-func TestAddIdsToSlice(t *testing.T) {
-
-	// create a slice of ints
-	slice := []int{1, 2, 3, 4, 5}
-	expected := []int{1, 2, 2, 3, 3, 4, 4, 5}
-
-	// add the ids to the slice
-	slice = AddIdsToSlice(1, 3, slice)
-
-	// check if the slice is correct
-	if len(slice) != len(expected) {
-		t.Errorf("Expected %v, but got %v", expected, slice)
-	}
-
-}
-
 func TestGetCardIdsWithWinningCopyCondition(t *testing.T) {
 
 	inputCards := []Card{
@@ -265,8 +249,15 @@ func TestGetCardIdsWithWinningCopyConditionExample2(t *testing.T) {
 
 	result := GetCardIdsWithWinningCopyCondition(inputCards)
 
-	if len(result) != expected {
-		t.Errorf("Expected %d, but got %d", expected, len(result))
+	// sum all integers in the result
+
+	sum := 0
+	for _, value := range result {
+		sum += value
+	}
+
+	if sum != expected {
+		t.Errorf("Expected %d, but got %d", expected, sum)
 	}
 
 }
@@ -280,12 +271,19 @@ func TestGetCardIdsWithWinningCopyConditionData2(t *testing.T) {
 	for i, test := range tests {
 		cards[i] = ExtractCardIdWinningNumbersAndDraws(test)
 	}
-	expected := 30
+	expected := 5539496
 
 	result := GetCardIdsWithWinningCopyCondition(cards)
 
-	if len(result) != expected {
-		t.Errorf("Expected %d, but got %d", expected, len(result))
+	// sum all integers in the result
+
+	sum := 0
+	for _, id := range result {
+		sum += id
+	}
+
+	if sum != expected {
+		t.Errorf("Expected %d, but got %d", expected, sum)
 	}
 
 }

@@ -92,75 +92,64 @@ func GetHittingNumbersWithPower(testCard Card) ([]int, int) {
 
 }
 
-// assuming the array with cards is sorted by card id
-func GetCardIdsWithWinningCopyCondition(inputCards []Card) []int {
+// This function is doing the following:
+// 1. Get the number of hits for each card: This is our winning table
+// We have then in our wins for each card the number of hits (careful: index 0 is card 1 and so on!!)
 
-	var extractedIds []int
+// 2. We create a distribution rate for each card with 1
+// We are just going to keep track of the number of cards we have.
+
+// 3. We are now taking each slot of distribution rate and determine based on our winning table how many copies we need to create for each card
+// We do this simply by determing the next cards we have to consider (thats just the number of hits for the current card) and how often we have to this
+// (thats just the number of cards we have in the distribution rate for the current card)
+
+// 4. We are now creating the copies and increase the counter for each id we get back by one.
+
+// 5. We are now returning the distribution rate which is our result and from which we just have to calculate the certain values for each card (each index)
+func GetCardIdsWithWinningCopyCondition(inputCards []Card) []int {
 
 	// sort inputcards by card id
 	sort.Slice(inputCards, func(i, j int) bool {
 		return inputCards[i].CardId < inputCards[j].CardId
 	})
 
-	// copy all cards with only their id
-	for _, card := range inputCards {
-		extractedIds = append(extractedIds, card.CardId)
+	// init distribution rate for each card with 1
+	var distributionRate []int = make([]int, len(inputCards))
+	for i := 0; i < len(distributionRate); i++ {
+		distributionRate[i] = 1
 	}
 
 	// create an array and just put the len of the wins in there this will be used as mapping table to create copies
 	var wins []int
-
 	for _, card := range inputCards {
-
 		numberOfHits, _ := GetHittingNumbersWithPower(card)
 		wins = append(wins, len(numberOfHits))
-
 	}
 
-	sameNumberCount := 0
-	lastNumber := extractedIds[0]
+	for i := 0; i < len(distributionRate); i++ {
 
-	for i := 0; i < len(extractedIds); i++ {
+		ids := GetCopies(i, i+wins[i], distributionRate[i])
 
-		currentNumber := extractedIds[i]
-
-		// new number add wins of last number to the slice
-		if lastNumber != currentNumber {
-			for j := 0; j < sameNumberCount; j++ {
-				extractedIds = AddIdsToSlice(lastNumber, wins[lastNumber-1], extractedIds)
-			}
-			sameNumberCount = 1
-		} else {
-			sameNumberCount++
+		for _, id := range ids {
+			distributionRate[id] = distributionRate[id] + 1
 		}
 
-		lastNumber = extractedIds[i]
-
 	}
 
-	return extractedIds
+	return distributionRate
 
 }
 
-func AddIdsToSlice(startIndex int, nextNumbers int, ids []int) []int {
+func GetCopies(from, to, times int) []int {
 
-	// protection to overextend the slice. Get the last number if the slice first as maximum
-	maxNumber := ids[len(ids)-1]
+	var ids []int
 
-	for i := startIndex + 1; i <= startIndex+nextNumbers && i <= maxNumber; i++ {
-
-		ids = InsertSorted(ids, i)
-
+	for i := 0; i < times; i++ {
+		for j := from + 1; j <= to; j++ {
+			ids = append(ids, j)
+		}
 	}
 
 	return ids
 
-}
-
-func InsertSorted(s []int, e int) []int {
-	i := sort.Search(len(s), func(i int) bool { return s[i] > e })
-	s = append(s, 0)
-	copy(s[i+1:], s[i:])
-	s[i] = e
-	return s
 }
