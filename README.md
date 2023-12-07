@@ -13,8 +13,8 @@ Most of these solutions try to go a TDD way. So you will find within the tests m
 | [3](https://adventofcode.com/2023/day/3)   | [adventofcode2023/day3](day3)|
 | [4](https://adventofcode.com/2023/day/4)   | [adventofcode2023/day4](day4)|
 | [5](https://adventofcode.com/2023/day/5)   | [adventofcode2023/day5](day5)|
-| [5](https://adventofcode.com/2023/day/6)   | [adventofcode2023/day6](day6)|
-| [5](https://adventofcode.com/2023/day/7)   | [adventofcode2023/day7](day7)|
+| [6](https://adventofcode.com/2023/day/6)   | [adventofcode2023/day6](day6)|
+| [7](https://adventofcode.com/2023/day/7)   | [adventofcode2023/day7](day7)|
 
 
 
