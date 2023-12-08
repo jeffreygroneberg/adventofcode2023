@@ -1,10 +1,13 @@
 package ride
 
 import (
+	"os"
 	"strings"
 	"sync"
 	"testing"
 
+	"github.com/dominikbraun/graph"
+	"github.com/dominikbraun/graph/draw"
 	"github.com/jeffreygroneberg/adventofcode2023/util"
 )
 
@@ -207,4 +210,47 @@ func GCD(a, b int) int {
 		a = t
 	}
 	return a
+}
+
+func TestDrawGraph(t *testing.T) {
+
+	nodeLines, _ := util.ReadFile("testdata/part2.txt")
+
+	nodes := createNodes(nodeLines)
+
+	nodesWithAMap := make(map[string]*Node)
+	var nodesWithASlice []*Node
+
+	for _, node := range nodes {
+		if strings.Contains(node.Name, "A") {
+			nodesWithAMap[node.Name] = node
+			nodesWithASlice = append(nodesWithASlice, node)
+		}
+	}
+
+	g := graph.New(graph.StringHash, graph.Directed())
+
+	for _, node := range nodes {
+
+		g.AddVertex(node.Name)
+		if node.Left != nil {
+			g.AddVertex(node.Left.Name)
+		}
+		if node.Right != nil {
+			g.AddVertex(node.Right.Name)
+		}
+
+		if node.Left != nil {
+			g.AddEdge(node.Name, node.Left.Name, graph.EdgeAttribute("label", "L"))
+		}
+
+		if node.Right != nil {
+			g.AddEdge(node.Name, node.Right.Name, graph.EdgeAttribute("label", "R"))
+		}
+
+	}
+
+	file, _ := os.Create("./simple.gv")
+	_ = draw.DOT(g, file)
+
 }
