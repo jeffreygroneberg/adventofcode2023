@@ -32,7 +32,7 @@ func travelWithInstructions(root *Node, instructions string, end string) int {
 		// detect loop
 		if (currentNode.Left == currentNode) && (currentNode.Right == currentNode) {
 			log.Printf("Found a loop at %s", currentNode.Name)
-			return 0
+			return sum + 1
 		}
 
 		sum++
