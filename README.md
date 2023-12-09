@@ -16,3 +16,4 @@ Most of these solutions try to go a TDD way. So you will find within the tests m
 | [6](https://adventofcode.com/2023/day/6)   | [adventofcode2023/day6](day6)|
 | [7](https://adventofcode.com/2023/day/7)   | [adventofcode2023/day7](day7)|
 | [8](https://adventofcode.com/2023/day/8)   | [adventofcode2023/day8](day8)|
+| [9](https://adventofcode.com/2023/day/9)   | [adventofcode2023/day9](day9)|
