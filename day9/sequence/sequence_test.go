@@ -108,7 +108,7 @@ func TestCalculateNextIntSequenceData2(t *testing.T) {
 
 	}
 
-	if sum != 1681758908 {
+	if sum != 803 {
 		t.Errorf("Expected %d, but got %d", 114, sum)
 	}
 
